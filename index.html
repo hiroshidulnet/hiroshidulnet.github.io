@@ -1,42 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Fitness Guide</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 0 20px;
-        line-height: 1.6;
-        color: #333;
-      }
-      img {
-        width: 100%;
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hiroshi Karunaratne</title>
+  <meta name="description" content="Hiroshi Karunaratne, Computer Science student at Sacramento State. Software engineering, full-stack web, hackathons." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e1412;
+      --surface: #151d1a;
+      --line: #24302b;
+      --text: #e8ece9;
+      --muted: #9aa8a1;
+      --accent: #f0b54a;
+      --green: #6fcf97;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
-    <h1>Getting Started with Fitness</h1>
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px 0;
+      font-family: "JetBrains Mono", monospace; font-size: 14px;
+    }
+    nav .links a { color: var(--muted); text-decoration: none; margin-left: 22px; }
+    nav .links a:hover { color: var(--accent); }
 
-    <p>
-      Fitness has been something I've gotten really into over the past year. The biggest
-      thing I've learned is that <strong>consistency matters way more than intensity</strong>.
-      A lot of people burn out because they go too hard too fast. Starting slow and building
-      up over time is how you actually make progress. <strong>Recovery</strong> is just as
-      important as the workout itself — sleep, hydration, and rest days are not optional.
-      If you want to learn more about training the right way, the
-      <a href="https://www.nsca.com/education/articles/" target="_blank">NSCA resource library</a>
-      has a ton of good evidence-based articles.
-    </p>
+    header { padding: 72px 0 64px; border-bottom: 1px solid var(--line); }
+    .tag {
+      font-family: "JetBrains Mono", monospace; font-size: 13px;
+      color: var(--green); letter-spacing: 0.04em; margin-bottom: 18px;
+    }
+    h1 {
+      font-family: "Fraunces", Georgia, serif; font-weight: 600;
+      font-size: clamp(40px, 7vw, 64px); line-height: 1.05; letter-spacing: -0.02em;
+    }
+    h1 span { color: var(--accent); }
+    header p { color: var(--muted); font-size: 18px; max-width: 600px; margin-top: 22px; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .btn {
+      display: inline-block; padding: 11px 20px; border-radius: 8px;
+      font-weight: 500; font-size: 15px; text-decoration: none;
+      border: 1px solid var(--line); transition: border-color .15s, background .15s;
+    }
+    .btn.primary { background: var(--accent); color: #1a1406; border-color: var(--accent); }
+    .btn:hover { border-color: var(--accent); }
 
-    <img
-      src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80"
-      alt="Gym with weights and equipment"
-    />
+    section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+    h2 {
+      font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 14px;
+      color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 28px;
+    }
 
-  </body>
+    .award {
+      display: flex; gap: 18px; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 10px; padding: 22px 24px; margin-bottom: 28px;
+    }
+    .award .medal { font-family: "Fraunces", serif; font-size: 34px; color: var(--accent); line-height: 1; }
+    .award h3 { font-size: 18px; font-weight: 600; }
+    .award p { color: var(--muted); margin-top: 6px; }
+
+    .projects { display: grid; gap: 16px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+      padding: 24px; transition: border-color .15s, transform .15s;
+    }
+    .card:hover { border-color: #3a4a43; transform: translateY(-2px); }
+    .card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .card h3 { font-size: 19px; font-weight: 600; }
+    .card .when { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
+    .card p { color: var(--muted); margin-top: 10px; }
+    .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .stack span {
+      font-family: "JetBrains Mono", monospace; font-size: 12px;
+      padding: 3px 9px; border-radius: 99px; background: #1d2824; color: var(--green);
+    }
+    .card .go { display: flex; gap: 18px; margin-top: 18px; font-size: 14px; font-weight: 500; }
+    .card .go a { color: var(--accent); text-decoration: none; }
+    .card .go a:hover { text-decoration: underline; }
+
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .about p { color: var(--muted); }
+    .about p + p { margin-top: 14px; }
+    .skills dt { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--green); margin-top: 14px; }
+    .skills dt:first-child { margin-top: 0; }
+    .skills dd { color: var(--text); font-size: 15px; }
+
+    footer { padding: 48px 0 64px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    footer a { color: var(--muted); }
+
+    @media (max-width: 640px) {
+      nav .links a { margin-left: 14px; }
+      header { padding: 48px 0 44px; }
+      .about { grid-template-columns: 1fr; gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <span>hiroshi.k</span>
+      <div class="links">
+        <a href="#projects">projects</a>
+        <a href="#about">about</a>
+        <a href="https://github.com/hiroshidulnet">github</a>
+      </div>
+    </nav>
+
+    <header>
+      <div class="tag">// CS @ Sacramento State · Class of 2027</div>
+      <h1>Hiroshi<br /><span>Karunaratne</span></h1>
+      <p>I build software that solves real problems for real people, from hackathon prototypes to websites for small businesses. Looking for software engineering internships, remote or in Sacramento.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my work</a>
+        <a class="btn" href="https://github.com/hiroshidulnet">GitHub</a>
+      </div>
+    </header>
+
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <div class="award">
+        <div class="medal">1st</div>
+        <div>
+          <h3>Hornet Hacks 4.0 · Construction Category Winner (3rd overall)</h3>
+          <p>Led Team Vektur as project manager and delivered the final pitch. Spring 2026, Sacramento State.</p>
+        </div>
+      </div>
+
+      <div class="projects">
+        <article class="card">
+          <div class="top"><h3>Vektur: Blueprint Conflict Detection</h3><span class="when">Hornet Hacks 4.0 · 2026</span></div>
+          <p>Plumbers, electricians and other trades each draw their own blueprints, and site managers catch the clashes by hand. We interviewed people in the field, then built an app that flags conflicts between trade plans before anything gets built.</p>
+          <div class="stack"><span>Project lead</span><span>Product research</span><span>Pitch</span></div>
+        </article>
+
+        <article class="card">
+          <div class="top"><h3>Kaze: Restaurant Website &amp; Booking</h3><span class="when">Freelance · 2026</span></div>
+          <p>A bilingual (English / Sinhala) website with online table reservations for a rooftop restaurant in Gampaha, Sri Lanka. The design was acquired by a startup that continued development.</p>
+          <div class="stack"><span>Web design</span><span>Booking system</span><span>Base44</span></div>
+          <div class="go"><a href="https://kaze-gampaha-sky.base44.app">Live demo →</a></div>
+        </article>
+
+        <article class="card">
+          <div class="top"><h3>Daily Task Tracker</h3><span class="when">CSC 131 · 2026</span></div>
+          <p>A team-built mobile app for planning and tracking daily tasks. I built the user interface and the countdown timer.</p>
+          <div class="stack"><span>React Native</span><span>Expo</span><span>TypeScript</span><span>Supabase</span></div>
+          <div class="go"><a href="https://github.com/hiroshidulnet/daily-task-tracker">Code →</a></div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="about">
+        <div>
+          <p>I grew up in Sri Lanka and transferred to Sacramento State in 2022, where I'm finishing a B.S. in Computer Science.</p>
+          <p>Last summer I worked at a startup building software for auto garages and their customers. On the side, I design websites for small businesses.</p>
+          <p>I like hackathons because they force you to find a real problem fast, talk to the people who have it, and ship something that works.</p>
+        </div>
+        <dl class="skills">
+          <dt>languages</dt><dd>JavaScript · TypeScript · Java · C++ · SQL · Assembly</dd>
+          <dt>frameworks &amp; tools</dt><dd>React Native · Expo · Supabase · MySQL · Git</dd>
+          <dt>also</dt><dd>Project management · Pitching · UI design</dd>
+        </dl>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Hiroshi Karunaratne</span>
+      <span><a href="https://github.com/hiroshidulnet">GitHub</a></span>
+    </footer>
+  </div>
+</body>
 </html>
